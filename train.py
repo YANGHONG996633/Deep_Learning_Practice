@@ -102,7 +102,7 @@ def train_process(model, tran_dataset, val_dataset, num_epochs):
             best_model_wts = deepcopy(model.state_dict())
         time_use = time.time() - start_time
         print("耗时:{:.0f}m{:.0f}s".format(time_use // 60, time_use % 60))
-    torch.save(best_model_wts, "./weights/best_mode.pth")
+    torch.save(best_model_wts, "./weights/best_model.pth")
     visual_data = pd.DataFrame(
         data={
             "epoch": range(num_epochs),
