@@ -2,7 +2,7 @@ import torch
 import torch.utils.data as d
 from torchvision import transforms
 from torchvision.datasets import FashionMNIST
-from model_LeNet import LeNet
+from model import *
 import time
 
 

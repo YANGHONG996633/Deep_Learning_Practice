@@ -1,0 +1,45 @@
+----------------------------------------------------------------
+        Layer (type)               Output Shape         Param #
+================================================================
+            Conv2d-1            [-1, 6, 28, 28]             156
+              ReLU-2            [-1, 6, 28, 28]               0
+         AvgPool2d-3            [-1, 6, 14, 14]               0
+            Conv2d-4           [-1, 16, 10, 10]           2,416
+              ReLU-5           [-1, 16, 10, 10]               0
+         AvgPool2d-6             [-1, 16, 5, 5]               0
+           Flatten-7                  [-1, 400]               0
+            Linear-8                  [-1, 120]          48,120
+              ReLU-9                  [-1, 120]               0
+           Linear-10                   [-1, 84]          10,164
+             ReLU-11                   [-1, 84]               0
+           Linear-12                   [-1, 10]             850
+================================================================
+Total params: 61,706
+Trainable params: 61,706
+Non-trainable params: 0
+----------------------------------------------------------------
+Input size (MB): 0.00
+Forward/backward pass size (MB): 0.11
+Params size (MB): 0.24
+Estimated Total Size (MB): 0.35
+----------------------------------------------------------------
+train loss:0.6721 train acc:0.7494 val loss:0.4819 val acc:0.8148 time_cost:0m34s
+train loss:0.4525 train acc:0.8326 val loss:0.4184 val acc:0.8486 time_cost:1m6s
+train loss:0.3871 train acc:0.8579 val loss:0.3642 val acc:0.8683 time_cost:1m38s
+train loss:0.3452 train acc:0.8726 val loss:0.3327 val acc:0.8756 time_cost:2m9s
+train loss:0.3164 train acc:0.8830 val loss:0.3221 val acc:0.8814 time_cost:2m41s
+train loss:0.2966 train acc:0.8900 val loss:0.3071 val acc:0.8893 time_cost:3m13s
+train loss:0.2772 train acc:0.8975 val loss:0.2979 val acc:0.8880 time_cost:3m45s
+train loss:0.2617 train acc:0.9020 val loss:0.2765 val acc:0.9009 time_cost:4m17s
+train loss:0.2492 train acc:0.9056 val loss:0.2747 val acc:0.9002 time_cost:4m48s
+train loss:0.2378 train acc:0.9116 val loss:0.3091 val acc:0.8852 time_cost:5m20s
+train loss:0.2277 train acc:0.9131 val loss:0.2803 val acc:0.9027 time_cost:5m53s
+train loss:0.2177 train acc:0.9171 val loss:0.2626 val acc:0.9048 time_cost:6m26s
+train loss:0.2078 train acc:0.9215 val loss:0.2559 val acc:0.9098 time_cost:7m3s
+train loss:0.1978 train acc:0.9253 val loss:0.2681 val acc:0.9024 time_cost:7m38s
+train loss:0.1907 train acc:0.9283 val loss:0.2671 val acc:0.9054 time_cost:8m12s
+train loss:0.1828 train acc:0.9316 val loss:0.2606 val acc:0.9081 time_cost:8m46s
+train loss:0.1743 train acc:0.9341 val loss:0.2676 val acc:0.9056 time_cost:9m20s
+train loss:0.1657 train acc:0.9367 val loss:0.2766 val acc:0.9062 time_cost:9m53s
+train loss:0.1606 train acc:0.9379 val loss:0.2733 val acc:0.9031 time_cost:10m27s
+train loss:0.1536 train acc:0.9411 val loss:0.2963 val acc:0.9046 time_cost:11m0s
