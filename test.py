@@ -44,7 +44,7 @@ def test_process(model, test_dataset):
 
 
 if __name__ == "__main__":
-    model = LeNet()
+    model = VGG()
     model.load_state_dict(
         torch.load("./weights/best_model.pth", map_location=torch.device("cpu"))
     )

@@ -1,5 +1,6 @@
 import torch
 from torch import nn
+import torch.nn.functional as f
 from torchsummary import summary
 
 
@@ -34,8 +35,10 @@ class LeNet(nn.Module):
 
         x = self.f5(x)
         x = self.relu(x)
+        x = f.dropout(x, 0.5)
         x = self.f6(x)
         x = self.relu(x)
+        x = f.dropout(x, 0.5)
         y = self.f7(x)
 
         return y
@@ -73,6 +76,59 @@ class AlexNet(nn.Module):
     def forward(self, x):
         y = self.layers(x)
         return y
+
+
+class VGG(nn.Module):
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.block1 = self.vgg_block(2, 1, 64)
+        self.block2 = self.vgg_block(2, 64, 128)
+        self.block3 = self.vgg_block(3, 128, 256)
+        self.block4 = nn.Sequential(
+            nn.Flatten(),
+            nn.Linear(3 * 3 * 256, 512),
+            nn.ReLU(),
+            nn.Dropout(0.5),
+            nn.Linear(512, 256),
+            nn.ReLU(),
+            nn.Dropout(0.5),
+            nn.Linear(256, 10),
+        )
+
+        # 权重和参数初始化
+        for l in self.modules():
+            if isinstance(l, nn.Conv2d):
+                nn.init.kaiming_normal_(
+                    l.weight, nonlinearity="relu"
+                )  # relu激活函数使用恺明初始化
+                if l.bias is not None:
+                    nn.init.constant_(l.bias, 0)
+            if isinstance(l, nn.Linear):
+                nn.init.normal_(
+                    l.weight, 0, 0.01
+                )  # 偏置使用均值为0，方差为0.01的正态分布
+                if l.bias is not None:
+                    nn.init.constant_(l.bias, 0)
+
+    def forward(self, x):
+        x = self.block1(x)
+        x = self.block2(x)
+        x = self.block3(x)
+        y = self.block4(x)
+
+        return y
+
+    def vgg_block(self, num_convs, in_channels, out_channels):
+        layers = []
+        for i in range(num_convs):
+            layers.append(
+                nn.Conv2d(in_channels, out_channels, kernel_size=3, padding=1)
+            )
+            layers.append(nn.ReLU())
+            in_channels = out_channels  # 同一块中输出通道相同
+        layers.append(nn.MaxPool2d(kernel_size=2, stride=2))
+        return nn.Sequential(*layers)  # 不加*是将layers作为一个整体
 
 
 if __name__ == "__main__":

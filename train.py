@@ -57,7 +57,9 @@ def train_process(model, tran_dataset, val_dataset, num_epochs):
 
     best_model_wts = deepcopy(model.state_dict())
     for epoch in range(num_epochs):
-        print("epoch:", epoch + 1, end=" ")
+        s = "epoch:" + str(epoch + 1) + " "
+        log_text += s
+        print(s, end="")
 
         # 初始化参数
         train_loss = 0.0
@@ -115,7 +117,10 @@ def train_process(model, tran_dataset, val_dataset, num_epochs):
             best_acc = val_acc_list[-1]
             best_model_wts = deepcopy(model.state_dict())
         time_use = time.time() - start_time
-        s = "time_cost:{:.0f}m{:.0f}s\n".format(time_use // 60, time_use % 60)
+        s = "time_cost:{:.0f}m{:.0f}s ".format(time_use // 60, time_use % 60)
+        log_text += s
+        print(s, end="")
+        s = "lr:" + str(optimizer.state_dict()["param_groups"][0]["lr"]) + "\n"
         log_text += s
         print(s, end="")
 
@@ -158,7 +163,7 @@ def visualize(visual_data):
 
 
 if __name__ == "__main__":
-    train_model = LeNet()
+    train_model = VGG()
     train_dataset, val_dataset = data_process()
     visual_data = train_process(train_model, train_dataset, val_dataset, 20)
     visualize(visual_data)
