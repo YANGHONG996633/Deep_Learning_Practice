@@ -100,7 +100,7 @@ class VGG(nn.Module):
         for l in self.modules():
             if isinstance(l, nn.Conv2d):
                 nn.init.kaiming_normal_(
-                    l.weight, nonlinearity="relu"
+                    l.weight, mode="fan_out", nonlinearity="relu"
                 )  # relu激活函数使用恺明初始化
                 if l.bias is not None:
                     nn.init.constant_(l.bias, 0)
@@ -131,7 +131,103 @@ class VGG(nn.Module):
         return nn.Sequential(*layers)  # 不加*是将layers作为一个整体
 
 
+class Inception(nn.Module):
+    def __init__(self, in_channels, b1, b2, b3, b4) -> None:
+        super().__init__()
+        self.branch_1 = nn.Sequential(
+            nn.Conv2d(in_channels, b1, 1),
+            nn.ReLU(),
+        )
+        self.branch_2 = nn.Sequential(
+            nn.Conv2d(in_channels, b2[0], 1),
+            nn.ReLU(),
+            nn.Conv2d(b2[0], b2[1], 3, padding=1),
+            nn.ReLU(),
+        )
+        self.branch_3 = nn.Sequential(
+            nn.Conv2d(in_channels, b3[0], 1),
+            nn.ReLU(),
+            nn.Conv2d(b3[0], b3[1], 5, padding=2),
+            nn.ReLU(),
+        )
+        self.branch_4 = nn.Sequential(
+            nn.MaxPool2d(3, 1, 1), nn.Conv2d(in_channels, b4, 1), nn.ReLU()
+        )
+
+    def forward(self, x):
+        branch_1 = self.branch_1(x)
+        branch_2 = self.branch_2(x)
+        branch_3 = self.branch_3(x)
+        branch_4 = self.branch_4(x)
+
+        return torch.cat([branch_1, branch_2, branch_3, branch_4], 1)
+
+
+class GoogLeNet(nn.Module):
+    def __init__(self) -> None:
+        super().__init__()
+        self.block1 = nn.Sequential(
+            nn.Conv2d(3, 64, 7, 2, 3), nn.ReLU(), nn.MaxPool2d(3, 2, 1)
+        )
+        self.block2 = nn.Sequential(
+            nn.Conv2d(64, 64, 1),
+            nn.ReLU(),
+            nn.Conv2d(64, 192, 3, padding=1),
+            nn.ReLU(),
+            nn.MaxPool2d(3, 2, 1),
+        )
+        self.block3 = nn.Sequential(
+            Inception(192, 64, (96, 128), (16, 32), 32),
+            Inception(256, 128, (128, 192), (32, 96), 64),
+            nn.MaxPool2d(3, 2, 1),
+        )
+        self.block4 = nn.Sequential(
+            Inception(480, 192, (96, 208), (16, 48), 64),
+            Inception(512, 160, (112, 224), (24, 64), 64),
+            Inception(512, 128, (128, 256), (24, 64), 64),
+            Inception(512, 112, (128, 288), (32, 64), 64),
+            Inception(528, 256, (160, 320), (32, 128), 128),
+            nn.MaxPool2d(3, 2, 1),
+        )
+        self.block5 = nn.Sequential(
+            Inception(832, 256, (160, 320), (32, 128), 128),
+            Inception(832, 384, (192, 384), (48, 128), 128),
+            nn.AdaptiveAvgPool2d((1, 1)),
+        )
+        self.block6 = nn.Sequential(nn.Flatten(), nn.Linear(1024, 10))
+        init_weights(self)
+
+    def forward(self, x):
+        x = self.block1(x)
+        x = self.block2(x)
+        x = self.block3(x)
+        x = self.block4(x)
+        x = self.block5(x)
+        y = self.block6(x)
+
+        return y
+
+
+def init_weights(model) -> None:
+    # 权重和参数初始化
+    for layer in model.modules():
+        if isinstance(layer, nn.Conv2d):
+            nn.init.kaiming_normal_(
+                layer.weight,
+                mode="fan_out",
+                nonlinearity="relu",  # std=sqrt(2/mode) fan_in保存该层的输入数量，fan_out保存输出
+            )  # relu激活函数使用恺明初始化
+            if layer.bias is not None:
+                nn.init.constant_(layer.bias, 0)
+        if isinstance(layer, nn.Linear):
+            nn.init.normal_(
+                layer.weight, 0, 0.01
+            )  # 偏置使用均值为0，方差为0.01的正态分布
+            if layer.bias is not None:
+                nn.init.constant_(layer.bias, 0)
+
+
 if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model = LeNet().to(device)
-    summary(model, (1, 28, 28))
+    model = GoogLeNet().to(device)
+    summary(model, (3, 224, 224))
