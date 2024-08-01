@@ -167,7 +167,7 @@ class GoogLeNet(nn.Module):
     def __init__(self) -> None:
         super().__init__()
         self.block1 = nn.Sequential(
-            nn.Conv2d(3, 64, 7, 2, 3), nn.ReLU(), nn.MaxPool2d(3, 2, 1)
+            nn.Conv2d(1, 64, 7, 2, 3), nn.ReLU(), nn.MaxPool2d(3, 2, 1)
         )
         self.block2 = nn.Sequential(
             nn.Conv2d(64, 64, 1),

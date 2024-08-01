@@ -1,0 +1,172 @@
+----------------------------------------------------------------
+        Layer (type)               Output Shape         Param #
+================================================================
+            Conv2d-1           [-1, 64, 14, 14]           3,200
+              ReLU-2           [-1, 64, 14, 14]               0
+         MaxPool2d-3             [-1, 64, 7, 7]               0
+            Conv2d-4             [-1, 64, 7, 7]           4,160
+              ReLU-5             [-1, 64, 7, 7]               0
+            Conv2d-6            [-1, 192, 7, 7]         110,784
+              ReLU-7            [-1, 192, 7, 7]               0
+         MaxPool2d-8            [-1, 192, 4, 4]               0
+            Conv2d-9             [-1, 64, 4, 4]          12,352
+             ReLU-10             [-1, 64, 4, 4]               0
+           Conv2d-11             [-1, 96, 4, 4]          18,528
+             ReLU-12             [-1, 96, 4, 4]               0
+           Conv2d-13            [-1, 128, 4, 4]         110,720
+             ReLU-14            [-1, 128, 4, 4]               0
+           Conv2d-15             [-1, 16, 4, 4]           3,088
+             ReLU-16             [-1, 16, 4, 4]               0
+           Conv2d-17             [-1, 32, 4, 4]          12,832
+             ReLU-18             [-1, 32, 4, 4]               0
+        MaxPool2d-19            [-1, 192, 4, 4]               0
+           Conv2d-20             [-1, 32, 4, 4]           6,176
+             ReLU-21             [-1, 32, 4, 4]               0
+        Inception-22            [-1, 256, 4, 4]               0
+           Conv2d-23            [-1, 128, 4, 4]          32,896
+             ReLU-24            [-1, 128, 4, 4]               0
+           Conv2d-25            [-1, 128, 4, 4]          32,896
+             ReLU-26            [-1, 128, 4, 4]               0
+           Conv2d-27            [-1, 192, 4, 4]         221,376
+             ReLU-28            [-1, 192, 4, 4]               0
+           Conv2d-29             [-1, 32, 4, 4]           8,224
+             ReLU-30             [-1, 32, 4, 4]               0
+           Conv2d-31             [-1, 96, 4, 4]          76,896
+             ReLU-32             [-1, 96, 4, 4]               0
+        MaxPool2d-33            [-1, 256, 4, 4]               0
+           Conv2d-34             [-1, 64, 4, 4]          16,448
+             ReLU-35             [-1, 64, 4, 4]               0
+        Inception-36            [-1, 480, 4, 4]               0
+        MaxPool2d-37            [-1, 480, 2, 2]               0
+           Conv2d-38            [-1, 192, 2, 2]          92,352
+             ReLU-39            [-1, 192, 2, 2]               0
+           Conv2d-40             [-1, 96, 2, 2]          46,176
+             ReLU-41             [-1, 96, 2, 2]               0
+           Conv2d-42            [-1, 208, 2, 2]         179,920
+             ReLU-43            [-1, 208, 2, 2]               0
+           Conv2d-44             [-1, 16, 2, 2]           7,696
+             ReLU-45             [-1, 16, 2, 2]               0
+           Conv2d-46             [-1, 48, 2, 2]          19,248
+             ReLU-47             [-1, 48, 2, 2]               0
+        MaxPool2d-48            [-1, 480, 2, 2]               0
+           Conv2d-49             [-1, 64, 2, 2]          30,784
+             ReLU-50             [-1, 64, 2, 2]               0
+        Inception-51            [-1, 512, 2, 2]               0
+           Conv2d-52            [-1, 160, 2, 2]          82,080
+             ReLU-53            [-1, 160, 2, 2]               0
+           Conv2d-54            [-1, 112, 2, 2]          57,456
+             ReLU-55            [-1, 112, 2, 2]               0
+           Conv2d-56            [-1, 224, 2, 2]         226,016
+             ReLU-57            [-1, 224, 2, 2]               0
+           Conv2d-58             [-1, 24, 2, 2]          12,312
+             ReLU-59             [-1, 24, 2, 2]               0
+           Conv2d-60             [-1, 64, 2, 2]          38,464
+             ReLU-61             [-1, 64, 2, 2]               0
+        MaxPool2d-62            [-1, 512, 2, 2]               0
+           Conv2d-63             [-1, 64, 2, 2]          32,832
+             ReLU-64             [-1, 64, 2, 2]               0
+        Inception-65            [-1, 512, 2, 2]               0
+           Conv2d-66            [-1, 128, 2, 2]          65,664
+             ReLU-67            [-1, 128, 2, 2]               0
+           Conv2d-68            [-1, 128, 2, 2]          65,664
+             ReLU-69            [-1, 128, 2, 2]               0
+           Conv2d-70            [-1, 256, 2, 2]         295,168
+             ReLU-71            [-1, 256, 2, 2]               0
+           Conv2d-72             [-1, 24, 2, 2]          12,312
+             ReLU-73             [-1, 24, 2, 2]               0
+           Conv2d-74             [-1, 64, 2, 2]          38,464
+             ReLU-75             [-1, 64, 2, 2]               0
+        MaxPool2d-76            [-1, 512, 2, 2]               0
+           Conv2d-77             [-1, 64, 2, 2]          32,832
+             ReLU-78             [-1, 64, 2, 2]               0
+        Inception-79            [-1, 512, 2, 2]               0
+           Conv2d-80            [-1, 112, 2, 2]          57,456
+             ReLU-81            [-1, 112, 2, 2]               0
+           Conv2d-82            [-1, 128, 2, 2]          65,664
+             ReLU-83            [-1, 128, 2, 2]               0
+           Conv2d-84            [-1, 288, 2, 2]         332,064
+             ReLU-85            [-1, 288, 2, 2]               0
+           Conv2d-86             [-1, 32, 2, 2]          16,416
+             ReLU-87             [-1, 32, 2, 2]               0
+           Conv2d-88             [-1, 64, 2, 2]          51,264
+             ReLU-89             [-1, 64, 2, 2]               0
+        MaxPool2d-90            [-1, 512, 2, 2]               0
+           Conv2d-91             [-1, 64, 2, 2]          32,832
+             ReLU-92             [-1, 64, 2, 2]               0
+        Inception-93            [-1, 528, 2, 2]               0
+           Conv2d-94            [-1, 256, 2, 2]         135,424
+             ReLU-95            [-1, 256, 2, 2]               0
+           Conv2d-96            [-1, 160, 2, 2]          84,640
+             ReLU-97            [-1, 160, 2, 2]               0
+           Conv2d-98            [-1, 320, 2, 2]         461,120
+             ReLU-99            [-1, 320, 2, 2]               0
+          Conv2d-100             [-1, 32, 2, 2]          16,928
+            ReLU-101             [-1, 32, 2, 2]               0
+          Conv2d-102            [-1, 128, 2, 2]         102,528
+            ReLU-103            [-1, 128, 2, 2]               0
+       MaxPool2d-104            [-1, 528, 2, 2]               0
+          Conv2d-105            [-1, 128, 2, 2]          67,712
+            ReLU-106            [-1, 128, 2, 2]               0
+       Inception-107            [-1, 832, 2, 2]               0
+       MaxPool2d-108            [-1, 832, 1, 1]               0
+          Conv2d-109            [-1, 256, 1, 1]         213,248
+            ReLU-110            [-1, 256, 1, 1]               0
+          Conv2d-111            [-1, 160, 1, 1]         133,280
+            ReLU-112            [-1, 160, 1, 1]               0
+          Conv2d-113            [-1, 320, 1, 1]         461,120
+            ReLU-114            [-1, 320, 1, 1]               0
+          Conv2d-115             [-1, 32, 1, 1]          26,656
+            ReLU-116             [-1, 32, 1, 1]               0
+          Conv2d-117            [-1, 128, 1, 1]         102,528
+            ReLU-118            [-1, 128, 1, 1]               0
+       MaxPool2d-119            [-1, 832, 1, 1]               0
+          Conv2d-120            [-1, 128, 1, 1]         106,624
+            ReLU-121            [-1, 128, 1, 1]               0
+       Inception-122            [-1, 832, 1, 1]               0
+          Conv2d-123            [-1, 384, 1, 1]         319,872
+            ReLU-124            [-1, 384, 1, 1]               0
+          Conv2d-125            [-1, 192, 1, 1]         159,936
+            ReLU-126            [-1, 192, 1, 1]               0
+          Conv2d-127            [-1, 384, 1, 1]         663,936
+            ReLU-128            [-1, 384, 1, 1]               0
+          Conv2d-129             [-1, 48, 1, 1]          39,984
+            ReLU-130             [-1, 48, 1, 1]               0
+          Conv2d-131            [-1, 128, 1, 1]         153,728
+            ReLU-132            [-1, 128, 1, 1]               0
+       MaxPool2d-133            [-1, 832, 1, 1]               0
+          Conv2d-134            [-1, 128, 1, 1]         106,624
+            ReLU-135            [-1, 128, 1, 1]               0
+       Inception-136           [-1, 1024, 1, 1]               0
+AdaptiveAvgPool2d-137           [-1, 1024, 1, 1]               0
+         Flatten-138                 [-1, 1024]               0
+          Linear-139                   [-1, 10]          10,250
+================================================================
+Total params: 5,927,850
+Trainable params: 5,927,850
+Non-trainable params: 0
+----------------------------------------------------------------
+Input size (MB): 0.00
+Forward/backward pass size (MB): 1.31
+Params size (MB): 22.61
+Estimated Total Size (MB): 23.92
+----------------------------------------------------------------
+epoch:1 train loss:0.6961 train acc:0.7584 val loss:0.4209 val acc:0.8466 time_cost:3m43s lr:0.001
+epoch:2 train loss:0.3515 train acc:0.8682 val loss:0.3111 val acc:0.8868 time_cost:7m17s lr:0.001
+epoch:3 train loss:0.2980 train acc:0.8903 val loss:0.2866 val acc:0.8931 time_cost:10m45s lr:0.001
+epoch:4 train loss:0.2688 train acc:0.9017 val loss:0.2797 val acc:0.9005 time_cost:14m11s lr:0.001
+epoch:5 train loss:0.2459 train acc:0.9091 val loss:0.2667 val acc:0.9011 time_cost:17m37s lr:0.001
+epoch:6 train loss:0.2281 train acc:0.9147 val loss:0.2558 val acc:0.9065 time_cost:21m4s lr:0.001
+epoch:7 train loss:0.2166 train acc:0.9202 val loss:0.2221 val acc:0.9181 time_cost:24m30s lr:0.001
+epoch:8 train loss:0.2011 train acc:0.9249 val loss:0.2325 val acc:0.9134 time_cost:27m57s lr:0.001
+epoch:9 train loss:0.1871 train acc:0.9306 val loss:0.2375 val acc:0.9166 time_cost:31m24s lr:0.001
+epoch:10 train loss:0.1768 train acc:0.9335 val loss:0.2281 val acc:0.9202 time_cost:34m51s lr:0.001
+epoch:11 train loss:0.1660 train acc:0.9381 val loss:0.2137 val acc:0.9242 time_cost:38m17s lr:0.001
+epoch:12 train loss:0.1562 train acc:0.9411 val loss:0.2200 val acc:0.9260 time_cost:41m44s lr:0.001
+epoch:13 train loss:0.1492 train acc:0.9440 val loss:0.2117 val acc:0.9248 time_cost:45m12s lr:0.001
+epoch:14 train loss:0.1432 train acc:0.9456 val loss:0.2108 val acc:0.9277 time_cost:48m39s lr:0.001
+epoch:15 train loss:0.1399 train acc:0.9487 val loss:0.2242 val acc:0.9255 time_cost:52m7s lr:0.001
+epoch:16 train loss:0.1389 train acc:0.9488 val loss:0.2353 val acc:0.9265 time_cost:55m34s lr:0.001
+epoch:17 train loss:0.1268 train acc:0.9523 val loss:0.2530 val acc:0.9230 time_cost:59m3s lr:0.001
+epoch:18 train loss:0.1211 train acc:0.9545 val loss:0.2295 val acc:0.9263 time_cost:62m45s lr:0.001
+epoch:19 train loss:0.1166 train acc:0.9562 val loss:0.2263 val acc:0.9317 time_cost:66m19s lr:0.001
+epoch:20 train loss:0.1178 train acc:0.9555 val loss:0.2404 val acc:0.9281 time_cost:69m48s lr:0.001

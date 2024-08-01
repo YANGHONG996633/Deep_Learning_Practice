@@ -11,7 +11,7 @@ def data_process():
         root="./data",
         train=False,
         download=True,
-        transform=transforms.Compose([transforms.Resize(28), transforms.ToTensor()]),
+        transform=transforms.Compose([transforms.Resize(224), transforms.ToTensor()]),
     )
     test_data = d.DataLoader(dataset, batch_size=1, shuffle=False, num_workers=8)
 
@@ -44,9 +44,7 @@ def test_process(model, test_dataset):
 
 
 if __name__ == "__main__":
-    model = VGG()
-    model.load_state_dict(
-        torch.load("./weights/best_model.pth", map_location=torch.device("cpu"))
-    )
+    model = GoogLeNet()
+    model.load_state_dict(torch.load("./weights/best_model.pth"))
     dataset = data_process()
     test_process(model, dataset)

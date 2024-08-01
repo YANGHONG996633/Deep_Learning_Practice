@@ -1,0 +1,68 @@
+----------------------------------------------------------------
+        Layer (type)               Output Shape         Param #
+================================================================
+            Conv2d-1           [-1, 64, 28, 28]             640
+         LeakyReLU-2           [-1, 64, 28, 28]               0
+            Conv2d-3           [-1, 64, 28, 28]          36,928
+         LeakyReLU-4           [-1, 64, 28, 28]               0
+         MaxPool2d-5           [-1, 64, 14, 14]               0
+            Conv2d-6          [-1, 128, 14, 14]          73,856
+         LeakyReLU-7          [-1, 128, 14, 14]               0
+            Conv2d-8          [-1, 128, 14, 14]         147,584
+         LeakyReLU-9          [-1, 128, 14, 14]               0
+        MaxPool2d-10            [-1, 128, 7, 7]               0
+           Conv2d-11            [-1, 256, 7, 7]         295,168
+        LeakyReLU-12            [-1, 256, 7, 7]               0
+           Conv2d-13            [-1, 256, 7, 7]         590,080
+        LeakyReLU-14            [-1, 256, 7, 7]               0
+           Conv2d-15            [-1, 256, 7, 7]         590,080
+        LeakyReLU-16            [-1, 256, 7, 7]               0
+        MaxPool2d-17            [-1, 256, 3, 3]               0
+          Flatten-18                 [-1, 2304]               0
+           Linear-19                  [-1, 512]       1,180,160
+        LeakyReLU-20                  [-1, 512]               0
+          Dropout-21                  [-1, 512]               0
+           Linear-22                  [-1, 256]         131,328
+        LeakyReLU-23                  [-1, 256]               0
+          Dropout-24                  [-1, 256]               0
+           Linear-25                   [-1, 10]           2,570
+================================================================
+Total params: 3,048,394
+Trainable params: 3,048,394
+Non-trainable params: 0
+----------------------------------------------------------------
+Input size (MB): 0.00
+Forward/backward pass size (MB): 3.07
+Params size (MB): 11.63
+Estimated Total Size (MB): 14.70
+----------------------------------------------------------------
+epoch:1 train loss:1.1862 train acc:0.5521 val loss:0.6763 val acc:0.7425 time_cost:0m44s lr:1e-05
+epoch:2 train loss:0.7245 train acc:0.7281 val loss:0.5933 val acc:0.7702 time_cost:1m27s lr:1e-05
+epoch:3 train loss:0.6410 train acc:0.7604 val loss:0.5447 val acc:0.7965 time_cost:2m9s lr:1e-05
+epoch:4 train loss:0.5815 train acc:0.7822 val loss:0.4853 val acc:0.8129 time_cost:2m51s lr:1e-05
+epoch:5 train loss:0.5306 train acc:0.8027 val loss:0.4509 val acc:0.8343 time_cost:3m33s lr:1e-05
+epoch:6 train loss:0.4960 train acc:0.8167 val loss:0.4207 val acc:0.8479 time_cost:4m15s lr:1e-05
+epoch:7 train loss:0.4682 train acc:0.8287 val loss:0.3968 val acc:0.8547 time_cost:4m58s lr:1e-05
+epoch:8 train loss:0.4469 train acc:0.8373 val loss:0.3874 val acc:0.8576 time_cost:5m40s lr:1e-05
+epoch:9 train loss:0.4251 train acc:0.8438 val loss:0.3720 val acc:0.8615 time_cost:6m22s lr:1e-05
+epoch:10 train loss:0.4032 train acc:0.8516 val loss:0.3509 val acc:0.8693 time_cost:7m5s lr:1e-05
+epoch:11 train loss:0.3886 train acc:0.8594 val loss:0.3363 val acc:0.8752 time_cost:7m47s lr:1e-05
+epoch:12 train loss:0.3767 train acc:0.8627 val loss:0.3339 val acc:0.8764 time_cost:8m29s lr:1e-05
+epoch:13 train loss:0.3640 train acc:0.8659 val loss:0.3225 val acc:0.8786 time_cost:9m11s lr:1e-05
+epoch:14 train loss:0.3490 train acc:0.8722 val loss:0.3112 val acc:0.8838 time_cost:9m54s lr:1e-05
+epoch:15 train loss:0.3418 train acc:0.8755 val loss:0.3009 val acc:0.8889 time_cost:10m36s lr:1e-05
+epoch:16 train loss:0.3296 train acc:0.8799 val loss:0.2943 val acc:0.8899 time_cost:11m18s lr:1e-05
+epoch:17 train loss:0.3227 train acc:0.8826 val loss:0.2873 val acc:0.8945 time_cost:12m0s lr:1e-05
+epoch:18 train loss:0.3138 train acc:0.8845 val loss:0.2851 val acc:0.8932 time_cost:12m43s lr:1e-05
+epoch:19 train loss:0.3065 train acc:0.8881 val loss:0.2814 val acc:0.8961 time_cost:13m25s lr:1e-05
+epoch:20 train loss:0.2999 train acc:0.8898 val loss:0.2754 val acc:0.8986 time_cost:14m8s lr:1e-05
+epoch:21 train loss:0.2940 train acc:0.8934 val loss:0.2748 val acc:0.8979 time_cost:14m51s lr:1e-05
+epoch:22 train loss:0.2894 train acc:0.8941 val loss:0.2649 val acc:0.9003 time_cost:15m33s lr:1e-05
+epoch:23 train loss:0.2812 train acc:0.8971 val loss:0.2624 val acc:0.9035 time_cost:16m16s lr:1e-05
+epoch:24 train loss:0.2756 train acc:0.8998 val loss:0.2587 val acc:0.9033 time_cost:16m59s lr:1e-05
+epoch:25 train loss:0.2691 train acc:0.9022 val loss:0.2630 val acc:0.9022 time_cost:17m41s lr:1e-05
+epoch:26 train loss:0.2636 train acc:0.9038 val loss:0.2607 val acc:0.9042 time_cost:18m24s lr:1e-05
+epoch:27 train loss:0.2597 train acc:0.9040 val loss:0.2496 val acc:0.9078 time_cost:19m7s lr:1e-05
+epoch:28 train loss:0.2539 train acc:0.9061 val loss:0.2622 val acc:0.8998 time_cost:19m51s lr:1e-05
+epoch:29 train loss:0.2494 train acc:0.9078 val loss:0.2507 val acc:0.9086 time_cost:20m34s lr:1e-05
+epoch:30 train loss:0.2448 train acc:0.9103 val loss:0.2463 val acc:0.9058 time_cost:21m16s lr:1e-05

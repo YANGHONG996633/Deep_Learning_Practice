@@ -21,7 +21,7 @@ def data_process():
         root="./data",
         train=True,
         download=True,
-        transform=transforms.Compose([transforms.Resize(28), transforms.ToTensor()]),
+        transform=transforms.Compose([transforms.Resize(224), transforms.ToTensor()]),
     )
     train_data, val_data = d.random_split(
         dataset, [round(0.8 * len(dataset)), round(0.2 * len(dataset))]
@@ -163,7 +163,7 @@ def visualize(visual_data):
 
 
 if __name__ == "__main__":
-    train_model = VGG()
+    train_model = GoogLeNet()
     train_dataset, val_dataset = data_process()
     visual_data = train_process(train_model, train_dataset, val_dataset, 20)
     visualize(visual_data)
