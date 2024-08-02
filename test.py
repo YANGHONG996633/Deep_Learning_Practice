@@ -2,17 +2,20 @@ import torch
 import torch.utils.data as d
 from torchvision import transforms
 from torchvision.datasets import FashionMNIST
+from torchvision.datasets import ImageFolder
 from model import *
 import time
 
 
 def data_process():
-    dataset = FashionMNIST(
-        root="./data",
-        train=False,
-        download=True,
-        transform=transforms.Compose([transforms.Resize(224), transforms.ToTensor()]),
+    transform = transforms.Compose(
+        [
+            transforms.Resize(224),
+            transforms.ToTensor(),
+            transforms.Normalize([0.161, 0.151, 0.139], [0.058, 0.052, 0.048]),
+        ]
     )
+    dataset = ImageFolder("./data/Classification_c/test", transform)
     test_data = d.DataLoader(dataset, batch_size=1, shuffle=False, num_workers=8)
 
     return test_data

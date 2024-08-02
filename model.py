@@ -167,7 +167,7 @@ class GoogLeNet(nn.Module):
     def __init__(self) -> None:
         super().__init__()
         self.block1 = nn.Sequential(
-            nn.Conv2d(1, 64, 7, 2, 3), nn.ReLU(), nn.MaxPool2d(3, 2, 1)
+            nn.Conv2d(3, 64, 7, 2, 3), nn.ReLU(), nn.MaxPool2d(3, 2, 1)
         )
         self.block2 = nn.Sequential(
             nn.Conv2d(64, 64, 1),
@@ -194,7 +194,7 @@ class GoogLeNet(nn.Module):
             Inception(832, 384, (192, 384), (48, 128), 128),
             nn.AdaptiveAvgPool2d((1, 1)),
         )
-        self.block6 = nn.Sequential(nn.Flatten(), nn.Linear(1024, 10))
+        self.block6 = nn.Sequential(nn.Flatten(), nn.Linear(1024, 2))
         init_weights(self)
 
     def forward(self, x):

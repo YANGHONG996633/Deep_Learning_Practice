@@ -1,6 +1,7 @@
 import sys
 import torch
 import torch.nn as nn
+from torchvision.datasets import ImageFolder
 from torchvision.datasets import FashionMNIST
 from torchvision import transforms  # transforms用于数据处理
 import torch.utils.data as d
@@ -17,12 +18,20 @@ save_file_name = datetime.datetime.now().strftime("%Y-%m-%d+%H.%M")
 
 
 def data_process():
-    dataset = FashionMNIST(
+    """dataset = FashionMNIST(
         root="./data",
         train=True,
         download=True,
         transform=transforms.Compose([transforms.Resize(224), transforms.ToTensor()]),
+    )"""
+    norm = transforms.Normalize(
+        [0.162, 0.151, 0.138], [0.058, 0.052, 0.048]
+    )  # 均值和方差，用于归一化（正态分布）
+    trans = transforms.Compose(
+        [transforms.Resize((224, 224)), transforms.ToTensor(), norm]
     )
+
+    dataset = ImageFolder("./data/Classification_c/train", trans)
     train_data, val_data = d.random_split(
         dataset, [round(0.8 * len(dataset)), round(0.2 * len(dataset))]
     )
@@ -51,7 +60,7 @@ def train_process(model, tran_dataset, val_dataset, num_epochs):
     file = open("./log/" + save_file_name + ".txt", "a")
     std_out = sys.stdout
     sys.stdout = file
-    summary(model, (1, 28, 28))
+    summary(model, (3, 224, 224))
     sys.stdout = std_out
     file.close()
 
@@ -165,5 +174,5 @@ def visualize(visual_data):
 if __name__ == "__main__":
     train_model = GoogLeNet()
     train_dataset, val_dataset = data_process()
-    visual_data = train_process(train_model, train_dataset, val_dataset, 20)
+    visual_data = train_process(train_model, train_dataset, val_dataset, 40)
     visualize(visual_data)
