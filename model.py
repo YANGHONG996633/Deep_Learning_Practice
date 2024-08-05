@@ -208,6 +208,66 @@ class GoogLeNet(nn.Module):
         return y
 
 
+class Residual(nn.Module):
+    def __init__(self, in_channels, out_channels, stride=1) -> None:
+        super().__init__()
+        self.relu = nn.ReLU()
+        self.branch_1 = nn.Sequential(
+            nn.Conv2d(in_channels, out_channels, 3, stride=stride, padding=1),
+            nn.BatchNorm2d(out_channels),
+            nn.ReLU(),
+            nn.Conv2d(out_channels, out_channels, 3, padding=1),
+            nn.BatchNorm2d(out_channels),
+        )
+        self.branch_2 = (
+            None
+            if in_channels == out_channels
+            else nn.Conv2d(in_channels, out_channels, 1, stride=stride)
+        )
+
+    def forward(self, x):
+        b1 = self.branch_1(x)
+        b2 = x if self.branch_2 == None else self.branch_2(x)
+        y = self.relu(b1 + b2)
+
+        return y
+
+
+class ResNet18(nn.Module):
+    def __init__(self) -> None:
+        super().__init__()
+        self.block1 = nn.Sequential(
+            nn.Conv2d(3, 64, 7, 2, 3),
+            nn.BatchNorm2d(64),
+            nn.MaxPool2d(3, 2, 1),  # 56*56*64
+        )
+        self.block2 = Residual(64, 64)  # 56*56*64
+        self.block3 = Residual(64, 64)  # 56*56*64
+        self.block4 = Residual(64, 128, 2)  # 28*28*128
+        self.block5 = Residual(128, 128)  # 28*28*128
+        self.block6 = Residual(128, 256, 2)  # 14*14*256
+        self.block7 = Residual(256, 256)  # 14*14*256
+        self.block8 = Residual(256, 512, 2)  # 7*7*512
+        self.block9 = Residual(512, 512)  # 7*7*512
+        self.block10 = nn.Sequential(
+            nn.AdaptiveAvgPool2d((1, 1)), nn.Flatten(), nn.Linear(512, 10)
+        )
+
+    def forward(self, x):
+        x = self.block1(x)
+        x = self.block2(x)
+        x = self.block3(x)
+        x = self.block4(x)
+        x = self.block5(x)
+        x = self.block6(x)
+        x = self.block7(x)
+        x = self.block8(x)
+        x = self.block9(x)
+        y = self.block10(x)
+
+        return y
+
+
 def init_weights(model) -> None:
     # 权重和参数初始化
     for layer in model.modules():
@@ -229,5 +289,5 @@ def init_weights(model) -> None:
 
 if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model = GoogLeNet().to(device)
-    summary(model, (3, 224, 224))
+    model = ResNet18().to(device)
+    summary(model, (3, 224, 224), 1)
